@@ -4,13 +4,13 @@ using Sitecore.Form.Core.Utility;
 using Sitecore.Forms.Core.Data;
 using Sitecore.Globalization;
 using Sitecore.WFFM.Abstractions.Data;
-using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Text.RegularExpressions;
 using System.Web;
+using Sitecore.Diagnostics;
 
-namespace Sitecore.Form.UI.Adapters
+namespace Sitecore.Support.Form.UI.Adapters
 {
   public class ListControlAdapter : Adapter
   {
@@ -32,13 +32,14 @@ namespace Sitecore.Form.UI.Adapters
           {
             language = Language.Parse(Context.Request.QueryString["la"]);
           }
-          else if (Context.ContentLanguage != null && Context.ContentLanguage.ToString() != string.Empty)
+          else if (Context.Language != null && Context.Language.ToString() != string.Empty)
           {
-            language = Context.ContentLanguage;
+            Log.Error("dmko: " + value + " " + Context.Language, this);
+            language = Context.Language;
           }
           else
           {
-            language = Context.Language;
+            language = Context.ContentLanguage;
           }
           NameValueCollection nameValueCollection;
           using (new LanguageSwitcher(language))
