@@ -8,7 +8,6 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Text.RegularExpressions;
 using System.Web;
-using Sitecore.Diagnostics;
 
 namespace Sitecore.Support.Form.UI.Adapters
 {
@@ -34,7 +33,6 @@ namespace Sitecore.Support.Form.UI.Adapters
           }
           else if (Context.Language != null && Context.Language.ToString() != string.Empty)
           {
-            Log.Error("dmko: " + value + " " + Context.Language, this);
             language = Context.Language;
           }
           else
